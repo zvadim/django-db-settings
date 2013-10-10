@@ -10,6 +10,11 @@ setup(
     author='Zabiiaka Vadim',
     author_email='dev@madprogrammer.net',
     packages=find_packages(),
+    package_data = {
+        'db_settings': [
+            'templates/admin/db_settings/settings/*.html',
+        ],
+    },
     requires = ['django (>=1.3)'],
     license = 'MIT license',
     classifiers=[
