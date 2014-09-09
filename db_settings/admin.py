@@ -6,7 +6,6 @@ from .forms import *
 
 
 class SettingsAdmin(admin.ModelAdmin):
-    add_form_template = 'admin/db_settings/settings/create_form.html'
     add_form = SettingsCreationForm
 
     change_readonly_fields = ('name', 'key')
