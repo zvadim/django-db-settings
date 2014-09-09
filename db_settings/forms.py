@@ -5,7 +5,9 @@ from django.db import models
 from django.db.models.fields.files import ImageFieldFile
 from django import forms
 from django.conf import settings
-from tinymce.widgets import TinyMCE
+
+if 'tinymce' in settings.INSTALLED_APPS:
+    from tinymce.widgets import TinyMCE
 
 from .models import Settings
 
