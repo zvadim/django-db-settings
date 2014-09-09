@@ -49,7 +49,7 @@ class SettingsAdmin(admin.ModelAdmin):
         defaults.update(kwargs)
         return super(SettingsAdmin, self).get_form(request, obj, **defaults)
 
-    def response_add(self, request, obj, post_url_continue='../%s/'):
+    def response_add(self, request, obj, post_url_continue=None):
         # 'Save' -> 'Save and continue editing'
         if '_addanother' not in request.POST and '_popup' not in request.POST:
             request.POST['_continue'] = 1
