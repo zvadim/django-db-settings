@@ -33,7 +33,8 @@ class SettingsForm(forms.ModelForm):
         elif self.instance.type == 'image':
             tmp = self.fields['value']
             #
-            f = ImageFieldFile(instance=self.instance, field=models.ImageField(upload_to='db_settings'), name=self.instance.value)
+            f = ImageFieldFile(instance=self.instance, field=models.ImageField(upload_to='db_settings'),
+                               name=self.instance.value)
             self.fields['value'] = forms.ImageField(label=tmp.label, required=True)
             self.initial['value'] = f
         else:
@@ -43,13 +44,13 @@ class SettingsForm(forms.ModelForm):
         m = super(SettingsForm, self).save(commit=False)
 
         if self.instance.type == u'box':
-            #для чекбоксов если False, то сохраняем пустую строку
+            # if it is checkbox and value==False - save as empty string
             if self.instance.value == u'False':
                 self.instance.value = ''
 
         elif self.instance.type == u'image' and 'value' in self.changed_data:
-            #для картинки самостоятельно делаем сохранение изображения
-            nf = ImageFieldFile(instance=self.instance, field=models.ImageField(upload_to='db_settings'), name=self.instance.value.name)
+            nf = ImageFieldFile(instance=self.instance, field=models.ImageField(upload_to='db_settings'),
+                                name=self.instance.value.name)
             nf.field.name = 'value'
             nf.save(self.instance.value.name, self.instance.value, True)
             self.instance.value = self.instance.value.lower()

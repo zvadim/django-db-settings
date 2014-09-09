@@ -6,6 +6,7 @@ from .forms import *
 
 
 class SettingsAdmin(admin.ModelAdmin):
+    add_form_template = 'admin/db_settings/settings/create_form.html'
     add_form = SettingsCreationForm
 
     change_readonly_fields = ('name', 'key')
@@ -18,7 +19,7 @@ class SettingsAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('key', 'name', 'value',),
             }
-        ),
+        )
     ]
     add_fieldsets = (
         (None, {
@@ -54,4 +55,4 @@ class SettingsAdmin(admin.ModelAdmin):
             request.POST['_continue'] = 1
         return super(SettingsAdmin, self).response_add(request, obj, post_url_continue)
 
-admin.site.register(Settings,SettingsAdmin)
+admin.site.register(Settings, SettingsAdmin)
