@@ -10,10 +10,7 @@ def settings(request):
     ret = {}
     for it in s:
         if it.type == 'box':
-            if it.value:
-                it.value = True
-            else:
-                it.value = False
+            it.value = bool(it.value)
         elif it.type == 'image':
             it.value = ImageFieldFile(instance=it, field=ImageField(upload_to='settings'), name=it.value)
 

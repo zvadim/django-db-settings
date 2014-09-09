@@ -5,10 +5,10 @@ package = 'db_settings'
 
 setup(
     name='django-db-settings',
-    version='1.0',
+    version='0.1',
     long_description = open(os.path.join(os.path.dirname(__file__), 'README.md')).read(),
     author='Zabiiaka Vadim',
-    author_email='dev@madprogrammer.net',
+    author_email='v.zabiiaka@gmail.com',
     packages=find_packages(),
     package_data = {
         'db_settings': [

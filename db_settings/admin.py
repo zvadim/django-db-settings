@@ -12,8 +12,8 @@ class SettingsAdmin(admin.ModelAdmin):
     change_readonly_fields = ('name', 'key')
 
     form = SettingsForm
-    ordering = ['key',]
-    list_display = ('name','key')
+    ordering = ['key']
+    list_display = ('name', 'key')
 
     fieldsets = [
         (None, {
@@ -24,7 +24,7 @@ class SettingsAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('type', 'key', 'name', 'value',)
+            'fields': ('type', 'key', 'name',)
         }),
     )
 
@@ -50,7 +50,7 @@ class SettingsAdmin(admin.ModelAdmin):
         return super(SettingsAdmin, self).get_form(request, obj, **defaults)
 
     def response_add(self, request, obj, post_url_continue='../%s/'):
-        # Делаем из 'Save' -> 'Save and continue editing'
+        # 'Save' -> 'Save and continue editing'
         if '_addanother' not in request.POST and '_popup' not in request.POST:
             request.POST['_continue'] = 1
         return super(SettingsAdmin, self).response_add(request, obj, post_url_continue)
