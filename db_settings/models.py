@@ -3,22 +3,29 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-FIELD_TYPE = (
-    ('char', _('One line input')),
-    ('text', _('Multi-line field')),
-    ('box', _('Checkbox')),
-    ('image', _('Image')),
-)
-
-if 'tinymce' in settings.INSTALLED_APPS:
-    FIELD_TYPE += (('text_html', _('Multi-line field with HTML')),)
-
 
 class Settings(models.Model):
+    class Type(object):
+        CHAR = 'char'
+        TEXT = 'text'
+        HTML = 'text_html'
+        CHECKBOX = 'checkbox'
+        IMAGE = 'image'
+
+        DEFAULT = CHAR
+
+        CHOICES = (
+            (CHAR, _('One line input')),
+            (TEXT, _('Multi-line field')),
+            (CHECKBOX, _('Checkbox')),
+            (IMAGE, _('Image')),
+            (HTML, _('Multi-line field with HTML'))
+        )
+
     name = models.CharField(_('Help text'), max_length=100)
     key = models.CharField(_('Field key'), max_length=100, unique=True)
     value = models.TextField(_('Value'), blank=True)
-    type = models.CharField(_('Field type'), choices=FIELD_TYPE, max_length=16, default=FIELD_TYPE[0][0])
+    type = models.CharField(_('Field type'), choices=Type.CHOICES, max_length=16, default=Type.DEFAULT)
 
     def __unicode__(self):
         return '%s (%s)' % (self.name, self.key)

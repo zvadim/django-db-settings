@@ -9,7 +9,7 @@ class SettingsAdmin(admin.ModelAdmin):
     add_form_template = 'admin/db_settings/settings/create_form.html'
     add_form = SettingsCreationForm
 
-    change_readonly_fields = ('name', 'key')
+    readonly_fields = ('name', 'key')
 
     form = SettingsForm
     ordering = ['key']
@@ -21,7 +21,7 @@ class SettingsAdmin(admin.ModelAdmin):
             }
         )
     ]
-    add_fieldsets = (
+    add_view_fieldsets = (
         (None, {
             'classes': ('wide',),
             'fields': ('type', 'key', 'name',)
@@ -30,12 +30,12 @@ class SettingsAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
-            return self.change_readonly_fields
+            return self.readonly_fields
         return super(SettingsAdmin, self).get_readonly_fields(request, obj)
 
     def get_fieldsets(self, request, obj=None):
         if not obj:
-            return self.add_fieldsets
+            return self.add_view_fieldsets
         return super(SettingsAdmin, self).get_fieldsets(request, obj)
 
     def get_form(self, request, obj=None, **kwargs):
@@ -43,7 +43,7 @@ class SettingsAdmin(admin.ModelAdmin):
         if obj is None:
             defaults.update({
                 'form': self.add_form,
-                'fields': admin.util.flatten_fieldsets(self.add_fieldsets),
+                'fields': admin.util.flatten_fieldsets(self.add_view_fieldsets),
             })
 
         defaults.update(kwargs)
