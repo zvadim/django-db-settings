@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -9,19 +8,18 @@ class Settings(models.Model):
         CHAR = 'char'
         TEXT = 'text'
         HTML = 'text_html'
-        CHECKBOX = 'checkbox'
+        BOOLEAN = 'boolean'
         IMAGE = 'image'
 
         DEFAULT = CHAR
 
         CHOICES = (
             (CHAR, _('One line input')),
+            (BOOLEAN, _('Checkbox')),
+            (IMAGE, _('Image Field')),
             (TEXT, _('Multi-line field')),
-            (CHECKBOX, _('Checkbox')),
-            (IMAGE, _('Image')),
             (HTML, _('Multi-line field with HTML'))
         )
-
     name = models.CharField(_('Help text'), max_length=100)
     key = models.CharField(_('Field key'), max_length=100, unique=True)
     value = models.TextField(_('Value'), blank=True)
@@ -32,4 +30,4 @@ class Settings(models.Model):
 
     class Meta:
         verbose_name = _('Setting')
-        verbose_name_plural = _('Settings')
+        verbose_name_plural = _('Dynamic Settings')

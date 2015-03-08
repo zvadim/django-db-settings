@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from .models import Settings
 from django.db.models.fields.files import ImageFieldFile
 from django.db. models import ImageField
+from dynamic_settings.models import Settings
 
 
-def settings(request):
-
+def dynamic_settings(request):
     s = Settings.objects.all()
     ret = {}
     for it in s:
@@ -16,4 +15,4 @@ def settings(request):
 
         ret[it.key] = it.value
 
-    return {'db_settings': ret}
+    return {'dynamic_settings': ret}

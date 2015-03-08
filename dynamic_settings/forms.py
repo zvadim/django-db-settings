@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
+from django import forms
 from django.contrib.admin.widgets import AdminTextareaWidget, AdminTextInputWidget
 from django.forms import widgets
 from django.db import models
 from django.db.models.fields.files import ImageFieldFile
-from django import forms
 from django.conf import settings
+from dynamic_settings.models import Settings
+
 
 if 'tinymce' in settings.INSTALLED_APPS:
     from tinymce.widgets import TinyMCE
-
-from .models import Settings
 
 
 class SettingsCreationForm(forms.ModelForm):
