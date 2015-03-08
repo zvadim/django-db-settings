@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-
-from .models import Settings
-from .forms import *
+from dynamic_settings.forms import SettingsCreationForm, SettingsForm
+from dynamic_settings.models import Settings
 
 
 class SettingsAdmin(admin.ModelAdmin):
@@ -18,8 +17,7 @@ class SettingsAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {
             'fields': ('key', 'name', 'value',),
-            }
-        )
+        })
     ]
     add_view_fieldsets = (
         (None, {
