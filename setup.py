@@ -3,7 +3,7 @@ from os.path import abspath, dirname, join, isfile
 from setuptools import setup, find_packages, Command
 from setuptools.command.register import register
 
-import dynamic_settings as module
+import stored_settings as module
 
 # Consts
 README_MD = "README.md"
@@ -75,13 +75,13 @@ setup(
     long_description=long_description,
     author=module.__author__,
     author_email=module.__email__,
-    url='https://github.com/zvadim/django-dynamic-settings',
-    download_url='https://github.com/zvadim/django-dynamic-settings/tarball/%s' % module.__version__,
-    keywords=['django', 'settings', 'dynamic'],
-    packages=find_packages(include=('dynamic_settings',)),
+    url='https://github.com/zvadim/django-stored-settings',
+    download_url='https://github.com/zvadim/django-stored-settings/tarball/%s' % module.__version__,
+    keywords=['django', 'settings', 'dynamic', 'stored'],
+    packages=find_packages(include=('stored_settings',)),
     package_data={
-        'dynamic_settings': [
-            'templates/admin/dynamic_settings/settings/*.html',
+        'stored_settings': [
+            'templates/admin/stored_settings/settings/*.html',
         ],
     },
 

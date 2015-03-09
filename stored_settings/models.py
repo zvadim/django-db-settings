@@ -30,4 +30,4 @@ class Settings(models.Model):
 
     class Meta:
         verbose_name = _('Setting')
-        verbose_name_plural = _('Dynamic Settings')
+        verbose_name_plural = _('Stored Settings')

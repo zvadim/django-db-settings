@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from dynamic_settings.forms import SettingsCreationForm, SettingsForm
-from dynamic_settings.models import Settings
+from stored_settings.forms import SettingsCreationForm, SettingsForm
+from stored_settings.models import Settings
 
 
 class SettingsAdmin(admin.ModelAdmin):
-    add_form_template = 'admin/db_settings/settings/create_form.html'
+    add_form_template = 'admin/stored_settings/settings/create_form.html'
     add_form = SettingsCreationForm
 
     readonly_fields = ('name', 'key')

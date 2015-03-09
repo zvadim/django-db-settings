@@ -6,8 +6,8 @@ from django.db import models
 from django.db.models.fields.files import ImageFieldFile
 from django.conf import settings
 
-from dynamic_settings.models import Settings
-from dynamic_settings.settings import ENABLE_TINYMCE, UPLOAD_TO_DIRECTORY
+from stored_settings.models import Settings
+from stored_settings.settings import ENABLE_TINYMCE, UPLOAD_TO_DIRECTORY
 
 if ENABLE_TINYMCE:
     assert 'tinymce' in settings.INSTALLED_APPS

@@ -1,10 +1,9 @@
-Django Dynamic Settings
+Django Stored Settings
 ==================
 
-It often happens that we need to be able dynamically to create/edit some settings and site variables, 
-for example site title, logo and counter code.
+It often happens that we need to be able dynamically to create/edit some settings and site variables, for example site title, logo and counter code.
 
-`dynamic-settings` module is tailored specifically for these purposes allowing dynamically to create and further on to edit via django-admin records of the following types:
+`stored-settings` module is tailored specifically for these purposes allowing dynamically to create and further on to edit via django-admin records of the following types:
 
 * Char
 * Text
@@ -17,34 +16,34 @@ for example site title, logo and counter code.
 Requirements
 ------------
 
-Django dynamic-settings requires Django 1.3 or later.
+Django stored-settings requires Django 1.3 or later.
 
 Getting It
 -----------
-You can get Django dynamic-settings by using pip or easy_install:
+You can get Django stored-settings by using pip or easy_install:
 
-`$ pip install dynamic-settings`
+`$ pip install stored-settings`
 or
-`$ easy_install dynamic-settings`
+`$ easy_install stored-settings`
 
 If you want to install it from source, grab the git repository from GitHub and run setup.py:
 
 ```
-$ git clone git://github.com/zvadim/django-dynamic-settings.git
-$ cd dynamic-settings
+$ git clone git://github.com/zvadim/django-stored-settings.git
+$ cd stored_settings
 $ python setup.py install
 ```
 
 Installing It
 ------------
 
-To enable `dynamic_settings` in your project you need to add it to `INSTALLED_APPS` in your projects `settings.py` file:
+To enable `stored-settings` in your project you need to add it to `INSTALLED_APPS` in your projects `settings.py` file:
 
 
 ```python
 INSTALLED_APPS = (
     ...
-    'dynamic_settings',
+    'stored_settings',
 )
 ```
 
@@ -53,21 +52,28 @@ And also add new content processor
 ```python
 TEMPLATE_CONTEXT_PROCESSORS = (
     ...
-    'dynamic_settings.context_processors.dynamic_settings',
+    'stored_settings.context_processors.stored_settings',
 )
+```
+
+Last step is db migration
+
+```
+$ python manage.py migrate 
 ```
 
 Using It
 ---------
-in template  `{{ dynamic_settings.my_key }}`
+
+in template  `{{ stored_settings.my_key }}`
 
 TinyMCE
 -------
 
-For HTML fields TinyMCE can be applied. To enable `tinymce` support in `dynamic-settings` you need to add to `settings.py` the following:
+For HTML fields TinyMCE can be applied. To enable `TinyMCE` support in `stored-settings` you need to add to `settings.py` the following:
 
 ```python
 
-DYNAMIC_SETTINGS_TINYMCE_ENABLE = True
+STORED_SETTINGS_TINYMCE_ENABLE = True
 
 ```

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db.models.fields.files import ImageFieldFile
 from django.db. models import ImageField
-from dynamic_settings.models import Settings
+from stored_settings.models import Settings
 
 
 def dynamic_settings(request):
