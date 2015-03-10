@@ -85,7 +85,7 @@ setup(
         ],
     },
 
-    requires=['django (>=1.3)'],
+    requires=['django (>=1.3)', 'Pillow'],
 
     license='MIT license',
     classifiers=[

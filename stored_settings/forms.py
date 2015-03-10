@@ -43,13 +43,14 @@ class SettingsForm(forms.ModelForm):
             self.fields['value'].widget = AdminTextareaWidget(attrs={'cols': 90, 'rows': 30},)
         elif self.instance.type == Settings.Type.HTML:
                 self.fields['value'].widget = HtmlFieldWidget(attrs={'cols': 90, 'rows': 30},)
-        elif self.instance.type == 'image':
+        elif self.instance.type == Settings.Type.IMAGE:
             new_field = ImageFieldFile(instance=self.instance, field=models.ImageField(upload_to=UPLOAD_TO_DIRECTORY),
                                        name=self.instance.value)
             self.fields['value'] = forms.ImageField(label=self.fields['value'].label, required=True)
             self.initial['value'] = new_field
-        else:
+        elif self.instance.type == Settings.Type.BOOLEAN:
             self.fields['value'].widget = forms.widgets.CheckboxInput(attrs={})
+            self.fields['value'].label = 'Is true'
 
     def save(self, commit=True):
         instance = super(SettingsForm, self).save(commit=False)

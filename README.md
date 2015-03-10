@@ -16,7 +16,7 @@ It often happens that we need to be able dynamically to create/edit some setting
 Requirements
 ------------
 
-Django stored-settings requires Django 1.3 or later.
+Django stored-settings requires Django 1.3 or later and Pillow. Also has TinyMCE integration.
 
 Getting It
 -----------
