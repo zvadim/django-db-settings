@@ -27,8 +27,8 @@ class SettingsAdmin(admin.ModelAdmin):
     )
 
     def get_readonly_fields(self, request, obj=None):
-        if obj:
-            return self.readonly_fields
+        if not obj:
+            return ()
         return super(SettingsAdmin, self).get_readonly_fields(request, obj)
 
     def get_fieldsets(self, request, obj=None):
@@ -37,13 +37,12 @@ class SettingsAdmin(admin.ModelAdmin):
         return super(SettingsAdmin, self).get_fieldsets(request, obj)
 
     def get_form(self, request, obj=None, **kwargs):
+        """
+        Use special form during user creation
+        """
         defaults = {}
         if obj is None:
-            defaults.update({
-                'form': self.add_form,
-                'fields': admin.util.flatten_fieldsets(self.add_view_fieldsets),
-            })
-
+            defaults['form'] = self.add_form
         defaults.update(kwargs)
         return super(SettingsAdmin, self).get_form(request, obj, **defaults)
 

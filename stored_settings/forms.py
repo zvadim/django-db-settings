@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+import re
 from django import forms
 from django.contrib.admin.widgets import AdminTextareaWidget, AdminTextInputWidget
-from django.forms import widgets
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.fields.files import ImageFieldFile
 from django.conf import settings
+from django.utils.encoding import force_text
+from django.utils.translation import ugettext_lazy as _
 
 from stored_settings.models import Settings
 from stored_settings.settings import ENABLE_TINYMCE, UPLOAD_TO_DIRECTORY
@@ -19,6 +22,15 @@ else:
 class SettingsCreationForm(forms.ModelForm):
     class Meta:
         model = Settings
+
+    def clean_key(self):
+        data = self.cleaned_data['key']
+        slug_re = re.compile(r'^[a-zA-Z0-9_]+$')
+
+        if not slug_re.search(force_text(data)):
+            raise ValidationError(_("Enter a valid 'key' consisting of letters, numbers or underscores."),
+                                  code='invalid')
+        return data
 
 
 class SettingsForm(forms.ModelForm):
@@ -37,7 +49,7 @@ class SettingsForm(forms.ModelForm):
             self.fields['value'] = forms.ImageField(label=self.fields['value'].label, required=True)
             self.initial['value'] = new_field
         else:
-            self.fields['value'].widget = widgets.CheckboxInput(attrs={})
+            self.fields['value'].widget = forms.widgets.CheckboxInput(attrs={})
 
     def save(self, commit=True):
         instance = super(SettingsForm, self).save(commit=False)
@@ -56,5 +68,4 @@ class SettingsForm(forms.ModelForm):
 
         if commit:
             instance.save()
-
         return instance
