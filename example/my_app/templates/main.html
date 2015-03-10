@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <title>{{ stored_settings.site_title }}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <img src="{{ stored_settings.logo.url }}" class="pull-right">
+            <h1>{{ stored_settings.site_title }}</h1>
+        </div>
+        <p class="lead"><strong>Example plane text:</strong> {{ stored_settings.multiline_plain_text }}</p>
+
+        <blockquote>
+            <strong>Example HTML text:</strong> {{ stored_settings.multiline_html_text|safe }}
+        </blockquote>
+
+        <p>Example Boolean field: {{ stored_settings.checkbox_true }} (it is True value)</p>
+
+    </div>
+
+</body>
+</html>
