@@ -65,7 +65,7 @@ $ python manage.py migrate
 Using It
 ---------
 
-in template  `{{ stored_settings.my_key }}`
+See an [example](https://github.com/zvadim/django-stored-settings/tree/master/example "Django stored settings example")
 
 TinyMCE
 -------
