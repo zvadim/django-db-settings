@@ -22,9 +22,9 @@ Getting It
 -----------
 You can get Django stored-settings by using pip or easy_install:
 
-`$ pip install stored-settings`
+`$ pip install django-stored-settings`
 or
-`$ easy_install stored-settings`
+`$ easy_install django-stored-settings`
 
 If you want to install it from source, grab the git repository from GitHub and run setup.py:
 
