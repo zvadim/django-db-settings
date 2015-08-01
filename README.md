@@ -50,10 +50,13 @@ INSTALLED_APPS = (
 And also add new content processor
 
 ```python
-TEMPLATE_CONTEXT_PROCESSORS = (
+TEMPLATES = [{
     ...
-    'stored_settings.context_processors.stored_settings',
-)
+    OPTIONS': {
+        'stored_settings.context_processors.stored_settings',
+        ...
+    },
+}]
 ```
 
 Last step is db migration
