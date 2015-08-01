@@ -22,6 +22,7 @@ else:
 class SettingsCreationForm(forms.ModelForm):
     class Meta:
         model = Settings
+        fields = '__all__'
 
     def clean_key(self):
         data = self.cleaned_data['key']
